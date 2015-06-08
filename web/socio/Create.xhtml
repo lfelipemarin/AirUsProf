@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SocioCreateDlg" widgetVar="SocioCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSocioTitle}">
+            <h:form id="SocioCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{socioController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateSocioLabel_millas}" for="millas" />
+                        <p:inputText id="millas" value="#{socioController.selected.millas}" title="#{bundle.CreateSocioTitle_millas}" />
+                        <p:outputLabel value="#{bundle.CreateSocioLabel_pass}" for="pass" />
+                        <p:inputText id="pass" value="#{socioController.selected.pass}" title="#{bundle.CreateSocioTitle_pass}" />
+                        <p:outputLabel value="#{bundle.CreateSocioLabel_correo}" for="correo" />
+                        <p:inputText id="correo" value="#{socioController.selected.correo}" title="#{bundle.CreateSocioTitle_correo}" />
+                        <p:outputLabel value="#{bundle.CreateSocioLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{socioController.selected.telefono}" title="#{bundle.CreateSocioTitle_telefono}" />
+                        <p:outputLabel value="#{bundle.CreateSocioLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{socioController.selected.id}" title="#{bundle.CreateSocioTitle_id}" />
+                        <p:outputLabel value="#{bundle.CreateSocioLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{socioController.selected.nombre}" title="#{bundle.CreateSocioTitle_nombre}" />
+                        <p:outputLabel value="#{bundle.CreateSocioLabel_apellido}" for="apellido" />
+                        <p:inputText id="apellido" value="#{socioController.selected.apellido}" title="#{bundle.CreateSocioTitle_apellido}" />
+                        <p:outputLabel value="#{bundle.CreateSocioLabel_numeroTarjeta}" for="numeroTarjeta" />
+                        <p:inputText id="numeroTarjeta" value="#{socioController.selected.numeroTarjeta}" title="#{bundle.CreateSocioTitle_numeroTarjeta}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{socioController.create}" value="#{bundle.Save}" update="display,:SocioListForm:datalist,:growl" oncomplete="handleSubmit(args,'SocioCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SocioCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

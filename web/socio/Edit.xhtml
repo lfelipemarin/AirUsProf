@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SocioEditDlg" widgetVar="SocioEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditSocioTitle}">
+            <h:form id="SocioEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{socioController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditSocioLabel_millas}" for="millas" />
+                        <p:inputText id="millas" value="#{socioController.selected.millas}" title="#{bundle.EditSocioTitle_millas}" />
+                        <p:outputLabel value="#{bundle.EditSocioLabel_pass}" for="pass" />
+                        <p:inputText id="pass" value="#{socioController.selected.pass}" title="#{bundle.EditSocioTitle_pass}" />
+                        <p:outputLabel value="#{bundle.EditSocioLabel_correo}" for="correo" />
+                        <p:inputText id="correo" value="#{socioController.selected.correo}" title="#{bundle.EditSocioTitle_correo}" />
+                        <p:outputLabel value="#{bundle.EditSocioLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{socioController.selected.telefono}" title="#{bundle.EditSocioTitle_telefono}" />
+                        <p:outputLabel value="#{bundle.EditSocioLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{socioController.selected.id}" title="#{bundle.EditSocioTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditSocioLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{socioController.selected.nombre}" title="#{bundle.EditSocioTitle_nombre}" />
+                        <p:outputLabel value="#{bundle.EditSocioLabel_apellido}" for="apellido" />
+                        <p:inputText id="apellido" value="#{socioController.selected.apellido}" title="#{bundle.EditSocioTitle_apellido}" />
+                        <p:outputLabel value="#{bundle.EditSocioLabel_numeroTarjeta}" for="numeroTarjeta" />
+                        <p:inputText id="numeroTarjeta" value="#{socioController.selected.numeroTarjeta}" title="#{bundle.EditSocioTitle_numeroTarjeta}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{socioController.update}" value="#{bundle.Save}" update="display,:SocioListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SocioEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SocioEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

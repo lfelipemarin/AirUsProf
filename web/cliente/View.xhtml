@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ClienteViewDlg" widgetVar="ClienteViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewClienteTitle}">
+            <h:form id="ClienteViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{clienteController.selected != null}">
+                        <h:outputText value="#{bundle.ViewClienteLabel_correo}"/>
+                        <h:outputText value="#{clienteController.selected.correo}" title="#{bundle.ViewClienteTitle_correo}"/>
+                        <h:outputText value="#{bundle.ViewClienteLabel_telefono}"/>
+                        <h:outputText value="#{clienteController.selected.telefono}" title="#{bundle.ViewClienteTitle_telefono}"/>
+                        <h:outputText value="#{bundle.ViewClienteLabel_id}"/>
+                        <h:outputText value="#{clienteController.selected.id}" title="#{bundle.ViewClienteTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewClienteLabel_nombre}"/>
+                        <h:outputText value="#{clienteController.selected.nombre}" title="#{bundle.ViewClienteTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewClienteLabel_apellido}"/>
+                        <h:outputText value="#{clienteController.selected.apellido}" title="#{bundle.ViewClienteTitle_apellido}"/>
+                        <h:outputText value="#{bundle.ViewClienteLabel_numeroTarjeta}"/>
+                        <h:outputText value="#{clienteController.selected.numeroTarjeta}" title="#{bundle.ViewClienteTitle_numeroTarjeta}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ClienteViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

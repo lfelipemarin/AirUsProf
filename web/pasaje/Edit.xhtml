@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PasajeEditDlg" widgetVar="PasajeEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPasajeTitle}">
+            <h:form id="PasajeEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{pasajeController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPasajeLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{pasajeController.selected.id}" title="#{bundle.EditPasajeTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditPasajeLabel_clase}" for="clase" />
+                        <p:selectOneMenu id="clase" value="#{pasajeController.selected.clase}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{claseController.itemsAvailableSelectOne}"
+                                           var="claseItem"
+                                           itemValue="#{claseItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPasajeLabel_vuelo}" for="vuelo" />
+                        <p:selectOneMenu id="vuelo" value="#{pasajeController.selected.vuelo}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{vueloController.itemsAvailableSelectOne}"
+                                           var="vueloItem"
+                                           itemValue="#{vueloItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPasajeLabel_valor}" for="valor" />
+                        <p:inputText id="valor" value="#{pasajeController.selected.valor}" title="#{bundle.EditPasajeTitle_valor}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{pasajeController.update}" value="#{bundle.Save}" update="display,:PasajeListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PasajeEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PasajeEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

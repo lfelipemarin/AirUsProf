@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VueloEditDlg" widgetVar="VueloEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditVueloTitle}">
+            <h:form id="VueloEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{vueloController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditVueloLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{vueloController.selected.id}" title="#{bundle.EditVueloTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditVueloLabel_aeropuerto}" for="aeropuerto" />
+                        <p:inputText id="aeropuerto" value="#{vueloController.selected.aeropuerto}" title="#{bundle.EditVueloTitle_aeropuerto}" />
+                        <p:outputLabel value="#{bundle.EditVueloLabel_horaSalida}" for="horaSalida" />
+                        <p:calendar id="horaSalida" pattern="MM/dd/yyyy HH:mm:ss" value="#{vueloController.selected.horaSalida}" title="#{bundle.EditVueloTitle_horaSalida}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditVueloLabel_origen}" for="origen" />
+                        <p:selectOneMenu id="origen" value="#{vueloController.selected.origen}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{lugarController.itemsAvailableSelectOne}"
+                                           var="origenItem"
+                                           itemValue="#{origenItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditVueloLabel_destino}" for="destino" />
+                        <p:selectOneMenu id="destino" value="#{vueloController.selected.destino}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{lugarController.itemsAvailableSelectOne}"
+                                           var="destinoItem"
+                                           itemValue="#{destinoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{vueloController.update}" value="#{bundle.Save}" update="display,:VueloListForm:datalist,:growl" oncomplete="handleSubmit(args, 'VueloEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="VueloEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

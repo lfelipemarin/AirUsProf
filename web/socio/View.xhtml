@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SocioViewDlg" widgetVar="SocioViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSocioTitle}">
+            <h:form id="SocioViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{socioController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSocioLabel_millas}"/>
+                        <h:outputText value="#{socioController.selected.millas}" title="#{bundle.ViewSocioTitle_millas}"/>
+                        <h:outputText value="#{bundle.ViewSocioLabel_pass}"/>
+                        <h:outputText value="#{socioController.selected.pass}" title="#{bundle.ViewSocioTitle_pass}"/>
+                        <h:outputText value="#{bundle.ViewSocioLabel_correo}"/>
+                        <h:outputText value="#{socioController.selected.correo}" title="#{bundle.ViewSocioTitle_correo}"/>
+                        <h:outputText value="#{bundle.ViewSocioLabel_telefono}"/>
+                        <h:outputText value="#{socioController.selected.telefono}" title="#{bundle.ViewSocioTitle_telefono}"/>
+                        <h:outputText value="#{bundle.ViewSocioLabel_id}"/>
+                        <h:outputText value="#{socioController.selected.id}" title="#{bundle.ViewSocioTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewSocioLabel_nombre}"/>
+                        <h:outputText value="#{socioController.selected.nombre}" title="#{bundle.ViewSocioTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewSocioLabel_apellido}"/>
+                        <h:outputText value="#{socioController.selected.apellido}" title="#{bundle.ViewSocioTitle_apellido}"/>
+                        <h:outputText value="#{bundle.ViewSocioLabel_numeroTarjeta}"/>
+                        <h:outputText value="#{socioController.selected.numeroTarjeta}" title="#{bundle.ViewSocioTitle_numeroTarjeta}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SocioViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

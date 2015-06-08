@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CompraEditDlg" widgetVar="CompraEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCompraTitle}">
+            <h:form id="CompraEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{compraController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCompraLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{compraController.selected.id}" title="#{bundle.EditCompraTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditCompraLabel_cliente}" for="cliente" />
+                        <p:selectOneMenu id="cliente" value="#{compraController.selected.cliente}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"
+                                           var="clienteItem"
+                                           itemValue="#{clienteItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditCompraLabel_pasaje}" for="pasaje" />
+                        <p:selectOneMenu id="pasaje" value="#{compraController.selected.pasaje}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pasajeController.itemsAvailableSelectOne}"
+                                           var="pasajeItem"
+                                           itemValue="#{pasajeItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditCompraLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy HH:mm:ss" value="#{compraController.selected.fecha}" title="#{bundle.EditCompraTitle_fecha}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{compraController.update}" value="#{bundle.Save}" update="display,:CompraListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CompraEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CompraEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
