@@ -19,7 +19,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@ManagedBean(name = "vueloController")
 @SessionScoped
 public class VueloController implements Serializable {
 
