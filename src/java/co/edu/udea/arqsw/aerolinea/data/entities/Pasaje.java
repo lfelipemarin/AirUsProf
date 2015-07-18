@@ -31,7 +31,7 @@ public class Pasaje implements Serializable {
     private Clase clase;
 
     @JoinColumn(name = "vuelo")
-    @ManyToOne
+    @errorhere
     private Vuelo vuelo;
 
     @Column(name = "valor")
